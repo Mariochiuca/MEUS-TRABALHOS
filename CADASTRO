@@ -1,0 +1,77 @@
+class Fila:
+    def __init__(self):
+        self.__fila = []  # LISTA PRIVADA
+
+    def inserir(self, item):  # INSERIR A FILA
+        self.__fila.append(item)
+        print(f"Inserido: {item}")
+
+    def remover(self): #REMOVER DA FILA
+        if not self.esta_vazia():
+            removido = self.__fila.pop(0)
+            print(f"Removido: {removido}")
+            return removido
+        else:
+            print("Fila vazia! Nada para remover.")
+
+    def esta_vazia(self): #VERIFICAR SE ESTÁ VAZIA
+        return len(self.__fila) == 0
+
+    def pesquisar(self, nome): #USO PARA PESQUISA
+        for item in self.__fila:
+            dados = item.split(", ")
+            if dados[0].strip().lower() == nome.strip().lower():
+                return item
+        return None
+
+    def atualizar(self, nome, novo_registro): #USO PARA ACTUALIZAR
+
+        for i, item in enumerate(self.__fila):
+            dados = item.split(", ")
+            if dados[0].strip().lower() == nome.strip().lower():
+                self.__fila[i] = novo_registro
+                print(f"Atualizado: {nome} → {novo_registro}")
+                return
+        print(f"Estudante '{nome}' não encontrado.")
+
+    def __str__(self): #APRESENTAÇÃO DE INF ORGANIZADA
+        if self.esta_vazia():
+            return "Fila vazia"
+        return "Fila → " + " | ".join(self.__fila)
+
+##__________________________________________________________________________
+# ——— SAIDA DAS INFORMAÇÕES ———
+fila_estudantes = Fila()
+print("-------- LISTA DE PESSOAS CADASTRADAS --------")
+fila_estudantes.inserir("Meray, IDADE:23, DATA:07 de Agosto")
+fila_estudantes.inserir("Veronica, IDADE: 20, DATA:26 de Outubro")
+fila_estudantes.inserir("Cavinda, IDADE:22, DATA:15 de Março")
+fila_estudantes.inserir("Chiúca, IDADE:19, DATA:30 de Novembro")
+print("_____________________________________________")
+
+print("---------------FILA ACTUAL---------------")
+print(fila_estudantes)
+print("-----------------------------------------")
+
+print("--------------- PESQUISA ---------------")
+print("Pesquisando 'Veronica':")
+resultado = fila_estudantes.pesquisar("Veronica")
+print(resultado if resultado else "Não encontrado")
+print("-----------------------------------------")
+
+print("--------------- ACTUALIZAÇÃO ---------------")
+print("Atualizando registro da Verónica:")
+fila_estudantes.atualizar("veronica", "Pedro, 20, 26 de Outubro")
+
+print("\nAtualizando registro do Meray:")
+fila_estudantes.atualizar("Meray", "Mario, 24, 08 de Agosto")
+print("-----------------------------------------")
+
+print("\nFILA ACTUALIZADA:")
+print(fila_estudantes)
+
+fila_estudantes.remover()
+print("\nREMOÇÃO DO PRIMEIRO:")
+print(fila_estudantes)
+
+print("\n_________PROGRAMADOR:MÁRIO PEDRO CAVINDA CHIÚCA_________")
