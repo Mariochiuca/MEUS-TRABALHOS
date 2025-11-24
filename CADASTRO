@@ -1,3 +1,4 @@
+```python
 class Fila:
     def __init__(self):
         self.__fila = []  # LISTA PRIVADA
@@ -75,3 +76,5 @@ print("\nREMOÇÃO DO PRIMEIRO:")
 print(fila_estudantes)
 
 print("\n_________PROGRAMADOR:MÁRIO PEDRO CAVINDA CHIÚCA_________")
+
+```
